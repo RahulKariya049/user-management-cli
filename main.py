@@ -1,12 +1,24 @@
 from system import system
 from utilities import clear_screen
 from colorama import Fore,Style
+import os
 import time
 import json
 
 print(Fore.LIGHTBLUE_EX + Style.BRIGHT + "Welcome to USER MANAGEMENT SYSTEM......." + Style.RESET_ALL)
 sys = system()
 
+#Check if data folder and json files for user and admin record exists and not
+os.makedirs("data", exist_ok=True)
+
+if not os.path.exists("data/user.json"):
+    with open("data/user.json", "w") as f:
+        json.dump([], f)
+
+if not os.path.exists("data/admin.json"):
+    with open("data/admin.json", "w") as f:
+        json.dump([], f)
+        
 #Loading Data From a JSON file before the main program runs into class attributes
 
 with open("data/user.json") as f:
